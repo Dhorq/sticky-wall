@@ -5,7 +5,7 @@ import Note from "./components/Note";
 
 function App() {
   return (
-    <div className=" p-10 min-h-screen bg-gray-100">
+    <div className="px-20 py-15 min-h-screen bg-gray-100">
       <Navbar />
       <Note />
       <Toaster />

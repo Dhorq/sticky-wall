@@ -29,18 +29,17 @@ const NoteCard = () => {
   }, [fetchNote]);
 
   return (
-    <div className="w-full bg-amber-200">
+    <>
       {message.map((item) => (
         <div
           key={item._id}
-          className="flex flex-col size-50 bg-amber-200 w-full"
+          className="flex flex-col size-80 bg-amber-200 rounded-md p-3"
         >
-          <p>{item.name}</p>
-          <p>{item.description}</p>
+          <p className="font-medium text-2xl mb-5">{item.name}</p>
+          <p className="font-light">{item.description}</p>
         </div>
       ))}
-      <p>a</p>
-    </div>
+    </>
   );
 };
 
