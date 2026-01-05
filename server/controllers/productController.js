@@ -4,7 +4,7 @@ export const getProduct = async (req, res) => {
   try {
     const product = await Product.find();
 
-    if (!product) {
+    if (product < 1) {
       return res
         .status(404)
         .json({ success: false, message: "Please add product" });
@@ -12,11 +12,7 @@ export const getProduct = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: {
-        id: product._id,
-        name: product.name,
-        description: product.description,
-      },
+      message: product,
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });

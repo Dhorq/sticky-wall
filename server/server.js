@@ -4,6 +4,7 @@ import productRouter from "./routes/productRoutes.js";
 import connectDB from "./config/db.js";
 
 const app = express();
+app.use(express.json());
 
 dotenv.config();
 
