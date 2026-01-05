@@ -2,9 +2,16 @@ import Product from "./../models/productModel.js";
 
 export const getProduct = async (req, res) => {
   try {
-    const product = await Product.find();
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
 
-    if (product < 1) {
+    const products = await Product.find({}).skip(skip).limit(limit);
+
+    const total = await Product.countDocuments();
+    const totalPages = Math.ceil(total / limit);
+
+    if (products.length === 0) {
       return res
         .status(404)
         .json({ success: false, message: "Please add product" });
@@ -12,7 +19,10 @@ export const getProduct = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: product,
+      message: products,
+      page,
+      totalPages,
+      total,
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
