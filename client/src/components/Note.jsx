@@ -9,7 +9,8 @@ const Note = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [message, setMessage] = useState([]);
 
-  const limit = 8;
+  const limit =
+    window.innerWidth >= 1280 ? 10 : window.innerWidth >= 1024 ? 8 : 8;
 
   const backendUrl = import.meta.env.VITE_API_URL;
 
@@ -21,8 +22,6 @@ const Note = () => {
 
       const { success, message, totalPages } = response.data;
 
-      console.log(response);
-
       if (success) {
         setMessage(message);
         setTotalPages(totalPages);
@@ -30,7 +29,7 @@ const Note = () => {
     } catch (error) {
       toast.error(error.message);
     }
-  }, [backendUrl, page]);
+  }, [backendUrl, limit, page]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -51,13 +50,17 @@ const Note = () => {
       <div className="flex justify-center items-center gap-10 mt-10">
         <button
           onClick={handlePrev}
-          className={`${page === 1 ? "disabled opacity-25" : ""}`}
+          className={`${
+            page === 1 ? "disabled opacity-25" : "hover:opacity-75"
+          } cursor-pointer`}
         >
           Prev
         </button>
         <button
           onClick={handleNext}
-          className={`${page === totalPages ? "disabled opacity-25" : ""}`}
+          className={`${
+            page === totalPages ? "disabled opacity-25" : "hover:opacity-75"
+          } cursor-pointer`}
         >
           Next
         </button>

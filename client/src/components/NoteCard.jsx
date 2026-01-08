@@ -1,7 +1,7 @@
 const NoteCard = ({ message }) => {
   return (
     <>
-      <div className="w-full flex flex-wrap gap-10 h-130">
+      <div className="w-full flex flex-wrap gap-10 h-130 xl:h-160">
         {message.map((item) => (
           <div
             key={item._id}

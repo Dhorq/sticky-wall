@@ -6,7 +6,7 @@ const Navbar = () => {
       <h1 className="text-4xl font-bold">Sticky Wall</h1>
       <Link
         to="/create"
-        className="rounded-full size-5 flex justify-center items-center text-center p-5 font-black bg-amber-300"
+        className="rounded-full size-5 flex justify-center items-center text-center p-5 font-black bg-amber-300 xl:mr-15"
       >
         +
       </Link>
