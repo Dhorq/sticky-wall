@@ -9,7 +9,7 @@ const Note = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [message, setMessage] = useState([]);
 
-  const limit = 10;
+  const limit = 8;
 
   const backendUrl = import.meta.env.VITE_API_URL;
 
@@ -46,9 +46,9 @@ const Note = () => {
   };
 
   return (
-    <div className="mt-10">
+    <div className="my-10">
       <NoteCard message={message} />
-      <div className="flex justify-center items-center gap-10 absolute bottom-12 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="flex justify-center items-center gap-10 mt-10">
         <button
           onClick={handlePrev}
           className={`${page === 1 ? "disabled opacity-25" : ""}`}
