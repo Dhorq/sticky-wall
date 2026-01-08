@@ -31,6 +31,25 @@ const Note = () => {
     }
   }, [backendUrl, limit, page]);
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete(
+        `${backendUrl}/api/v1/product/delete/${id}`
+      );
+
+      const { success, message } = response.data;
+
+      if (success) {
+        await fetchNote();
+        console.log(message);
+      } else {
+        console.log(message);
+      }
+    } catch (error) {
+      console.log(error.response?.data?.message);
+    }
+  };
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchNote();
@@ -46,7 +65,7 @@ const Note = () => {
 
   return (
     <div className="my-10">
-      <NoteCard message={message} />
+      <NoteCard message={message} handleDelete={handleDelete} />
       <div className="flex justify-center items-center gap-10 mt-10">
         <button
           onClick={handlePrev}
